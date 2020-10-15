@@ -1,0 +1,10 @@
+# Python
+*.pyc
+__pycache__/
+
+
+# Swap
+*.swp
+
+# django environ
+.env
