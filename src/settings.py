@@ -51,13 +51,17 @@ class BaseSettings(Settings):
         rows_list = fd.readlines()
         for i in range(len(rows_list)):
             if self.Target.SECRET_KEY.value in rows_list[i]:
-                pos = rows_list[i].find("=")
-                rows_list[i] = insert_between(rows_list[i],
-                                              secret_key,
-                                              pos)
-                fd.seek(0, os.SEEK_SET)
-                fd.writelines(rows_list)
-                return
+                def_len = len(self.Target.SECRET_KEY.value + "=") + 1
+                if len(rows_list[i]) == def_len:
+                    pos = rows_list[i].find("=")
+                    rows_list[i] = insert_between(rows_list[i],
+                                                  secret_key,
+                                                  pos)
+                    fd.seek(0, os.SEEK_SET)
+                    fd.writelines(rows_list)
+                    return
+                else:
+                    return
 
 
 class DataBaseSettings(Settings):
