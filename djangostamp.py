@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 from src.systeminterface import SystemInterface
 
 if __name__ == "__main__":
