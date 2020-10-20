@@ -26,19 +26,16 @@ djangostamp
 ```
 
 Enter from keyboard the appropriate key:
----
 
 1. l - for layout creation.
----
-  1.1 s - create the layout for study.
-  1.2 r - create the layout for the production.
-  1.3 a - create the layout for the application.
+* s - create the layout for study.
+* r - create the layout for the production.
+* a - create the layout for the application.
 
 2. d - for database setting.
----
-  2.1 dbms - type the database management system. (mysql, psql, ...)
-  2.2 host - type the host number. (localhost, 127.0.0.1, ...)
-  2.3 port - number in which the database service is listening. (3306, 5432, ...)
-  2.4 database  - the database name for the connection. (dvdrental)
-  2.5 username - the role name for the connection.
-  2.6 password  - the role password.
+* dbms - type the database management system. (mysql, psql, ...)
+* host - type the host number. (localhost, 127.0.0.1, ...)
+* port - number in which the database service is listening. (3306, 5432, ...)
+* database  - the database name for the connection. (dvdrental)
+* username - the role name for the connection.
+* password  - the role password.
