@@ -14,6 +14,8 @@ git clone https://github.com/DmitryMaksyutenko/djangostamp.git
 You can create the symbolic link for call djangostamp from anywhere in the file system.
 If downloaded in home directory:
 ```bash
+cd djangostamp
+chmod +x djangostamp.py
 sudo ln -s ~/djangostamp/djangostamp.py /usr/local/bin/djangostamp
 ```
 
