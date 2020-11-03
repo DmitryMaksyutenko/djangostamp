@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from pathlib import Path
 
 from src.settings import (BaseSettings,
                           DataBaseSettings)
@@ -17,16 +18,15 @@ class TestBaseSettings:
         except SecretFileDoesntExist as error:
             assert isinstance(error, SecretFileDoesntExist)
 
-    def test_setup(self, tmp_path):
-        tmp_file_path = tmp_path / "TestPath"
-        tmp_file_path.mkdir()
-        tmp_file = tmp_file_path / SECRET_FILE_NAME
-        tmp_file.write_text("SECRET_KEY=\n")
-        size_before = tmp_file.stat().st_size
-        os.environ[LAYOUT_PATH] = str(tmp_file.parent)
+    def test_setup(self, tmpdir):
+        tmp_file = \
+            tmpdir.mkdir("TestPath").mkdir("configs").join(SECRET_FILE_NAME)
+        tmp_file.write_text("SECRET_KEY=\n", "utf-8")
+        size_before = tmp_file.size()
+        os.environ[LAYOUT_PATH] = str(Path(tmp_file).parent.parent)
         settings = BaseSettings()
         settings.setup()
-        size_after = tmp_file.stat().st_size
+        size_after = tmp_file.size()
         assert not(size_before == size_after)
 
 
@@ -39,7 +39,7 @@ class TestDataBaseSettings:
         except SecretFileDoesntExist as error:
             assert isinstance(error, SecretFileDoesntExist)
 
-    def test_setup(self, tmp_path):
+    def test_setup(self, tmpdir):
         dict_for_compare = {
                 "dbms": "postgresql",
                 "host": "localhost",
@@ -49,16 +49,14 @@ class TestDataBaseSettings:
                 "port": "5432"
                 }
         db_settings = DataBaseSettings(dict_for_compare)
-        tmp_file_path = tmp_path / "TestPath"
-        tmp_file_path.mkdir()
-        tmp_file = tmp_file_path / SECRET_FILE_NAME
-        tmp_file.write_text("DATABASE_URL=\n")
-        size_before = tmp_file.stat().st_size
-        os.environ[LAYOUT_PATH] = str(tmp_file.parent)
-        os.environ[LAYOUT_PATH] = str(tmp_file.parent)
+        tmp_file = \
+            tmpdir.mkdir("TestPath").mkdir("configs").join(SECRET_FILE_NAME)
+        tmp_file.write_text("DATABASE_URL=\n", "utf-8")
+        size_before = tmp_file.size()
+        os.environ[LAYOUT_PATH] = str(Path(tmp_file).parent.parent)
         db_settings.setup()
-        size_after = tmp_file.stat().st_size
-        file_data = tmp_file.read_text()
+        size_after = tmp_file.size()
+        file_data = tmp_file.read_text(encoding="utf-8")
         assert not(size_before == size_after)
         assert file_data.find(dict_for_compare["host"]) >= 0
         assert file_data.find(dict_for_compare["database"]) >= 0
