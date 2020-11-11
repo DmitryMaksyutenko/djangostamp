@@ -28,7 +28,12 @@ class Settings(metaclass=ABCMeta):
         Returns the path to the file for set up,
         from virtual environment.
         """
-        return Path(os.environ[LAYOUT_PATH] + "/configs/" + SECRET_FILE_NAME)
+        file_path = Path(os.environ[LAYOUT_PATH] + "/configs/settings")
+        if file_path.exists():
+            return file_path / SECRET_FILE_NAME
+        else:
+            return Path(
+                os.environ[LAYOUT_PATH] + "/configs/" + SECRET_FILE_NAME)
 
 
 class BaseSettings(Settings):
