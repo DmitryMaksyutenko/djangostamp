@@ -5,6 +5,3 @@ __pycache__/
 
 # Swap
 *.swp
-
-# django environ
-.env
