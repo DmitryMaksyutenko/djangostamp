@@ -9,7 +9,7 @@ General
 
 
 Databases
-- Name start with the capital letter.
+- Name start with the lovercase letter.
 
 
 Tables
@@ -21,14 +21,13 @@ Tables
 Columns
 - Use the lower case letters.
 - Name must be a noun.
-- Use the singular name.
+- Use the singular name if possible.
 - Avoid using "id" as the primary identifier for the table.
 - Do not add a column with the same name as its table and vice versa.
 
 
 Aliasing or correlations
-- Should relate in some way to the object or expression they are aliasing.
-- As a rule of thumb the correlation name should be the first letter of each word in the object’s name.
+- The name should be the first letter of each word in the object’s name.
 - If there is already a correlation with the same name then append a number.
 - Always include the AS keyword—makes it easier to read as it is explicit.
 - For computed data (SUM() or AVG()) use the name as it's like a column defined in the schema.
@@ -40,8 +39,8 @@ Stored procedures
 
 
 Indentatin
-- Base two spaces.
-- Joins, subqueries with four spaces.
+- Base four spaces.
+- Indent the type and constraint.
 
 
 Choosing data types
@@ -53,12 +52,10 @@ Choosing data types
 
 
 Keys
-- Must be unique.
 - Sequenced keys preferred.
-
 
 
 Constraints
 - Constraints should be defined directly beneath the column they correspond to.
-    Indent the constraint so that it aligns to the right of the column name.
-- If it is a table-level constraint that applies to the entire table then it should also appear at the end.
+    ndent the constraint so that it aligns to the right of the column name.
+- If it is a table-level constraint that applies to the entire table then it should also appear at the end
